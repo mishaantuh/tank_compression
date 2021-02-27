@@ -1,0 +1,9 @@
+{
+  "device": "cuda:2",
+  "batch_size": 32,
+  "batch_size_test": 8,
+  "num_epoch": 60,
+  "lr": 0.0002,
+  "lambda_1": 100,
+  "lambda_3": 1
+}
