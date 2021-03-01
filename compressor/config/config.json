@@ -1,4 +1,6 @@
 {
+  "name_run": "init",
+
   "device": "cuda:2",
   "batch_size": 32,
   "batch_size_test": 8,

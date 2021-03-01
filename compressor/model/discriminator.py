@@ -1,8 +1,10 @@
 from torch import nn
+
 from .layers import Conv2dInstance
 
+
 class Discriminator(nn.Module):
-    def __init__(self, image_size=128, n_attrs=9, fc_dim=1024, n_channel=64, n_layers=5):
+    def __init__(self, image_size=128, fc_dim=1024, n_channel=64, n_layers=5):
         super(Discriminator, self).__init__()
         layers = []
         in_channels = 3

@@ -1,8 +1,8 @@
-import torch
 import numpy as np
 import torch.nn as nn
 
 from .layers import Conv2d, TransposeConv2d, GlobalResidual
+
 
 class Generator(nn.Module):
     def __init__(self, n_channel=64, n_layers=5, n_attrs=9):
@@ -32,7 +32,7 @@ class Generator(nn.Module):
             dec_in_channel = n_channel // (2 ** (i + 1))
         self.dec = nn.Sequential(*layers_dec)
 
-    def forward(self, x, attr=None, mode="gen"):
+    def forward(self, x, mode="gen"):
         if mode == "encode":
             return self.enc(x)
         if mode == "decode":
