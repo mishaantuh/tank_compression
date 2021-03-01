@@ -5,9 +5,8 @@ from .layers import Conv2d, TransposeConv2d, GlobalResidual
 
 
 class Generator(nn.Module):
-    def __init__(self, n_channel=64, n_layers=5, n_attrs=9):
+    def __init__(self, n_channel=64, n_layers=6):
         super(Generator, self).__init__()
-        self.n_attrs = n_attrs
 
         # <--- encoder ---> #
         layers_enc = []
@@ -20,10 +19,8 @@ class Generator(nn.Module):
         # <--- decoder ---> #
         layers_dec = []
         n_channel = 2 ** (int(np.log2(n_channel)) + n_layers - 1)
-        dec_in_channel = n_channel + n_attrs
+        dec_in_channel = n_channel
         for i in range(n_layers):
-            if i >= n_layers - 1:
-                self.layers_dec.append(GlobalResidual(dec_in_channel, dec_in_channel * 2))
             if i + 1 == n_layers:
                 layers_dec.append(TransposeConv2d(dec_in_channel, 3, is_tanh=True))
                 continue

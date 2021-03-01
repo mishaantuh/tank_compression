@@ -1,4 +1,11 @@
+import os
+
 from torch import nn
+from torchvision import transforms
+
+
+MODE_TRAIN = "train"
+MODE_TEST = "test"
 
 
 class Criterion:
@@ -53,3 +60,20 @@ def get_log_test(logger_g):
         "test adv loss generator": adv_g,
         "test rec loss generator": rec_g,
     }
+
+
+def init_experiment(cfg):
+    # TODO: заменить try, except
+    try:
+        os.mkdir("pixs/examples_pix_{}_{}".format(MODE_TRAIN, cfg["name_run"]))
+        os.mkdir("pixs/examples_pix_{}_{}".format(MODE_TEST, cfg["name_run"]))
+        os.mkdir("checkpoints/{}".format(cfg["name_run"]))
+    except:
+        pass
+
+
+# TODO: вынести в отдельный модуль, так как понадобится для инференс
+inv_normalize = transforms.Normalize(
+    mean=[-0.5/0.5, -0.5/0.5, -0.5/0.5],
+    std=[1/0.5, 1/0.5, 1/0.5]
+)

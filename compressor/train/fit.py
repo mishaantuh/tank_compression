@@ -2,15 +2,14 @@ import torch
 import wandb
 import numpy as np
 
-from torch import nn
 from torch.utils.data import DataLoader
-from compressor.model import Generator, Discriminator
-from compressor.loader import DatasetLoader
+from model import Generator, Discriminator
+from loader import DatasetLoader
 from sklearn.model_selection import train_test_split
 from .helper import Logger, Criterion, get_log_train, get_log_test
 
 
-def train(cfg):
+def fit(cfg):
     gen = Generator(n_layers=5).to(cfg["device"])
     dis = Discriminator().to(cfg["device"])
 

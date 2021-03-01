@@ -1,11 +1,20 @@
 {
-  "name_run": "init",
+  "image_path": "img_align_celeba/img_align_celeba",
+  "attr_path": "list_attr_celeba.csv",
 
-  "device": "cuda:2",
+  "name_run": "init",
+  "img_size": 128,
+
+  "device": "cuda:0",
   "batch_size": 32,
   "batch_size_test": 8,
-  "num_epoch": 60,
+  "num_epoch": 10,
   "lr": 0.0002,
   "lambda_1": 100,
-  "lambda_3": 1
+  "lambda_3": 1,
+
+  "wandb_enable": 1,
+  "wandb_project": "project_name",
+  "wandb_entity": "entity",
+  "logs_per_epoch": 20
 }

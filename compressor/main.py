@@ -1,14 +1,15 @@
 import os
 import json
 import torch
+import wandb
 
-from .train import train
+from train.fit import fit
 
 
 if __name__ == "__main__":
     os.environ['PYTHONWARNINGS'] = 'ignore:semaphore_tracker:UserWarning'
 
-    config = json.load(open("config/config.json", "r"))
+    config = json.load(open("../config/local_config.json", "r"))
 
     print("------------------")
     print(config)
@@ -16,4 +17,7 @@ if __name__ == "__main__":
 
     config["device"] = torch.device(config["device"] if torch.cuda.is_available() else 'cpu')
 
-    train(config)
+    if config["wandb_enable"]:
+        wandb.init(project=config["wandb_project"], entity=config["wandb_entity"], name=config["name_run"])
+
+    fit(config)
