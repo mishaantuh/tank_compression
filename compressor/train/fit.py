@@ -44,7 +44,7 @@ def fit(cfg):
         logger_d.reset()
 
         if (i + 1) % 5 == 0:
-            torch.save(gen.state_dict(), "checkpoints/{}/epoch_{}".format(cfg["name_run"], i+1))
+            torch.save(gen.state_dict(), "checkpoints/{}/epoch_{}.pth".format(cfg["name_run"], i+1))
 
         for j, img in enumerate(loader_train):
             img = img.to(cfg["device"])

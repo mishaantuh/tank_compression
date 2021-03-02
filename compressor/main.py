@@ -3,13 +3,14 @@ import json
 import torch
 import wandb
 
-from train.fit import fit
+from train import fit, init_experiment
 
 
 if __name__ == "__main__":
     os.environ['PYTHONWARNINGS'] = 'ignore:semaphore_tracker:UserWarning'
 
-    config = json.load(open("../config/local_config.json", "r"))
+    config = json.load(open("config/local_config.json", "r"))
+    init_experiment(config)
 
     print("------------------")
     print(config)
